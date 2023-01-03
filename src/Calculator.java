@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;//indicates that a component-defined action occurred
+import java.awt.event.ActionListener;//receiving action events
 public class Calculator implements ActionListener{
     double number, answer;
     int calculation;
@@ -44,10 +44,10 @@ public class Calculator implements ActionListener{
         frame = new JFrame();
         frame.setTitle("Calculator");
         frame.setSize(300, 490);
-        frame.getContentPane().setLayout(null);
+        frame.getContentPane().setLayout(null);//Returns contentPane object for frame.
         frame.getContentPane().setBackground(Color.black);
         frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
+        frame.setLocationRelativeTo(null);//it set window in centre
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -57,24 +57,20 @@ public class Calculator implements ActionListener{
         label.setForeground(Color.white);
         frame.add(label);
 
-        textField.setBounds(10, 40, 270, 40);
+        textField.setBounds(10, 40, 270, 60);
         textField.setFont(new Font("Arial", Font.BOLD, 20));
         textField.setEditable(false);
         textField.setHorizontalAlignment(SwingConstants.RIGHT);
         frame.add(textField);
 
-        onRadioButton.setBounds(10, 95, 60, 40);
+        onRadioButton.setBounds(10, 120, 60, 40);
         onRadioButton.setSelected(true);
         onRadioButton.setFont(new Font("Arial", Font.BOLD, 14));
-        onRadioButton.setBackground(Color.black);
-        onRadioButton.setForeground(Color.white);
         frame.add(onRadioButton);
 
-        offRadioButton.setBounds(10, 120, 60, 40);
+        offRadioButton.setBounds(80, 120, 60, 40);
         offRadioButton.setSelected(false);
         offRadioButton.setFont(new Font("Arial", Font.BOLD, 14));
-        offRadioButton.setBackground(Color.black);
-        offRadioButton.setForeground(Color.white);
         frame.add(offRadioButton);
 
         ButtonGroup buttonGroup = new ButtonGroup();
@@ -127,64 +123,40 @@ public class Calculator implements ActionListener{
 
         buttonEqual.setBounds(220, 350, 60, 100);
         buttonEqual.setFont(new Font("Arial", Font.BOLD, 20));
-        buttonEqual.setBackground(new Color(239, 188, 2));
         frame.add(buttonEqual);
 
-        buttonDiv.setBounds(220, 110, 60, 40);
+        buttonDiv.setBounds(150, 170, 60, 40);
         buttonDiv.setFont(new Font("Arial", Font.BOLD, 20));
-        buttonDiv.setBackground(new Color(239, 188, 2));
         frame.add(buttonDiv);
-
-        buttonSqrt.setBounds(10, 170, 60, 40);
-        buttonSqrt.setFont(new Font("Arial", Font.BOLD, 18));
-        frame.add(buttonSqrt);
 
         buttonMul.setBounds(220, 230, 60, 40);
         buttonMul.setFont(new Font("Arial", Font.BOLD, 20));
-        buttonMul.setBackground(new Color(239, 188, 2));
         frame.add(buttonMul);
 
         buttonMinus.setBounds(220, 170, 60, 40);
         buttonMinus.setFont(new Font("Arial", Font.BOLD, 20));
-        buttonMinus.setBackground(new Color(239, 188, 2));
         frame.add(buttonMinus);
 
         buttonPlus.setBounds(220, 290, 60, 40);
         buttonPlus.setFont(new Font("Arial", Font.BOLD, 20));
-        buttonPlus.setBackground(new Color(239, 188, 2));
         frame.add(buttonPlus);
 
-        buttonSquare.setBounds(80, 170, 60, 40);
-        buttonSquare.setFont(new Font("Arial", Font.BOLD, 20));
-        frame.add(buttonSquare);
-
-        buttonReciprocal.setBounds(150, 170, 60, 40);
-        buttonReciprocal.setFont(new Font("Arial", Font.BOLD, 15));
-        frame.add(buttonReciprocal);
-
-        buttonDelete.setBounds(150, 110, 60, 40);
+        buttonDelete.setBounds(80, 170, 60, 40);
         buttonDelete.setFont(new Font("Arial", Font.BOLD, 12));
-        buttonDelete.setBackground(Color.red);
-        buttonDelete.setForeground(Color.white);
         frame.add(buttonDelete);
 
-        buttonClear.setBounds(80, 110, 60, 40);
+        buttonClear.setBounds(10, 170, 60, 40);
         buttonClear.setFont(new Font("Arial", Font.BOLD, 12));
-        buttonClear.setBackground(Color.red);
-        buttonClear.setForeground(Color.white);
         frame.add(buttonClear);
 
     }
 
     public void addActionEvent() {
-        onRadioButton.addActionListener(this);
+        onRadioButton.addActionListener(this);//Adds an ActionListener to the button.
         offRadioButton.addActionListener(this);
         buttonClear.addActionListener(this);
         buttonDelete.addActionListener(this);
         buttonDiv.addActionListener(this);
-        buttonSqrt.addActionListener(this);
-        buttonSquare.addActionListener(this);
-        buttonReciprocal.addActionListener(this);
         buttonMinus.addActionListener(this);
         buttonSeven.addActionListener(this);
         buttonEight.addActionListener(this);
@@ -232,7 +204,7 @@ public class Calculator implements ActionListener{
             if (textField.getText().equals("0")) {
                 return;
             } else {
-                textField.setText(textField.getText() + "0");
+                textField.setText(textField.getText() + "0");//Returns the text contained in this TextComponent.+0
             }
         } else if (source == buttonOne) {
             textField.setText(textField.getText() + "1");
@@ -283,31 +255,6 @@ public class Calculator implements ActionListener{
             textField.setText("");
             label.setText(str + "/");
             calculation = 4;
-        } else if (source == buttonSqrt) {
-            number = Double.parseDouble(textField.getText());
-            Double sqrt = Math.sqrt(number);
-            textField.setText(Double.toString(sqrt));
-
-        } else if (source == buttonSquare) {
-            String str = textField.getText();
-            number = Double.parseDouble(textField.getText());
-            double square = Math.pow(number, 2);
-            String string = Double.toString(square);
-            if (string.endsWith(".0")) {
-                textField.setText(string.replace(".0", ""));
-            } else {
-                textField.setText(string);
-            }
-            label.setText("(sqr)" + str);
-        } else if (source == buttonReciprocal) {
-            number = Double.parseDouble(textField.getText());
-            double reciprocal = 1 / number;
-            String string = Double.toString(reciprocal);
-            if (string.endsWith(".0")) {
-                textField.setText(string.replace(".0", ""));
-            } else {
-                textField.setText(string);
-            }
         } else if (source == buttonEqual) {
             switch (calculation) {
                 case 1:
@@ -346,11 +293,8 @@ public class Calculator implements ActionListener{
                     }
                     label.setText("");
                     break;
-
             }
         }
-
-
     }
 
     public void enable() {
@@ -361,9 +305,6 @@ public class Calculator implements ActionListener{
         buttonClear.setEnabled(true);
         buttonDelete.setEnabled(true);
         buttonDiv.setEnabled(true);
-        buttonSqrt.setEnabled(true);
-        buttonSquare.setEnabled(true);
-        buttonReciprocal.setEnabled(true);
         buttonMinus.setEnabled(true);
         buttonSeven.setEnabled(true);
         buttonEight.setEnabled(true);
@@ -390,9 +331,6 @@ public class Calculator implements ActionListener{
         buttonClear.setEnabled(false);
         buttonDelete.setEnabled(false);
         buttonDiv.setEnabled(false);
-        buttonSqrt.setEnabled(false);
-        buttonSquare.setEnabled(false);
-        buttonReciprocal.setEnabled(false);
         buttonMinus.setEnabled(false);
         buttonSeven.setEnabled(false);
         buttonEight.setEnabled(false);
