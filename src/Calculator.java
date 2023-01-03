@@ -29,11 +29,7 @@ public class Calculator implements ActionListener{
     JButton buttonDiv = new JButton("/");
     JButton buttonPlus = new JButton("+");
     JButton buttonMinus = new JButton("-");
-    JButton buttonSquare = new JButton("x\u00B2");
-    JButton buttonReciprocal = new JButton("1/x");
-    JButton buttonSqrt = new JButton("\u221A");
     ;
-
     Calculator() {
         prepareGUI();
         addComponents();
